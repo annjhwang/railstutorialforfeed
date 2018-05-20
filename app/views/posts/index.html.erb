@@ -27,7 +27,7 @@
               </div>
               <div class="card-body">
                 <p class="card-text"><%= post.post %></p>
-                <i class="far fa-thumbs-up"><span class="ml-2"><%= post.likes[0].like_count %></span></i>
+                <%= link_to '', add_likes_path(post_id: post.id), class: "far fa-thumbs-up" %><span class="ml-2"><%= post.likes[0].like_count %></span>
               </div>
             </div>
           </div>

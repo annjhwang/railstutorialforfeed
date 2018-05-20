@@ -20,6 +20,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def add_like
+    @post = Post.find(params[:post_id])
+    if @post
+      byebug
+      @post.likes.like_count
+    end
+  end
+
   private
     def post_params
       params.require(:post).permit(:post, :username)
