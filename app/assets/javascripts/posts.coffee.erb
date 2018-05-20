@@ -43,7 +43,7 @@ $(document).ready =>
     return
 
   Pusher.logToConsole = true;
-
+  console.log '<%= ENV["PUSHER_KEY"] %>'
   pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
     cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
     encrypted: true)
