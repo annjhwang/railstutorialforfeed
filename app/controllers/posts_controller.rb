@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.likes.build()
 
     respond_to do |format|
       if @post.save
