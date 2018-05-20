@@ -43,7 +43,6 @@ $(document).ready =>
     $('#post-form')[0].reset()
     return
 
-  console.log '<%= ENV["PUSHER_KEY"] %>'
   pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
     cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
     encrypted: true)
@@ -51,6 +50,7 @@ $(document).ready =>
   channel.bind 'new-post', (data) ->
     updateFeed data
   channel.bind 'new-like', (data) ->
+    <%# find the liked post via it's data-post attribute then update it %>
     currentPost = $ 'span[data-post=\'' + data.id + '\']'
     currentPost.text(data.likes[0].like_count)
     return
