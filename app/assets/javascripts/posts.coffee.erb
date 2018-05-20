@@ -29,6 +29,7 @@ $(document).ready =>
           <div class="card-header">@#{post.username}<small class="float-right mt-1">at #{postTime}</small></div>
           <div class="card-body">
             <p class="card-text">#{post.post}</p>
+            <i class="far fa-thumbs-up"><span class="ml-2">#{post.likes[0].like_count}</span></i>
           </div>
         </div>
       </div>
