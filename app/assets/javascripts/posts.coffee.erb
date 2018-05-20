@@ -30,7 +30,7 @@ $(document).ready =>
           <div class="card-body">
             <p class="card-text">#{post.post}</p>
             <a class="far fa-thumbs-up add-like" data-remote="true" rel="nofollow" data-method="post" href="/likes/#{post.id}"></a>
-            <span class="ml-2">#{post.likes[0].like_count}</span>
+            <span class="ml-2" data-post="#{post.id}">#{post.likes[0].like_count}</span>
           </div>
         </div>
       </div>
@@ -40,18 +40,9 @@ $(document).ready =>
   <%# if the post was successfully saved, get it and call the updateFeed function %>
   $('#post-form').on 'ajax:success', (data) ->
     post = data.detail[0]
-    <%# updateFeed post %>
     $('#post-form')[0].reset()
     return
 
-  <%# if adding a new like was successfull, get it and call the updateFeedLike function %>
-  $('.add-like').on 'ajax:success', (data) ->
-    post = data.detail[0]
-    currentPost = $ 'span[data-post=\'' + post.id + '\']'
-    currentPost.text(post.likes)
-    return
-
-  Pusher.logToConsole = true;
   console.log '<%= ENV["PUSHER_KEY"] %>'
   pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
     cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
@@ -59,5 +50,8 @@ $(document).ready =>
   channel = pusher.subscribe('feed')
   channel.bind 'new-post', (data) ->
     updateFeed data
+  channel.bind 'new-like', (data) ->
+    currentPost = $ 'span[data-post=\'' + data.id + '\']'
+    currentPost.text(data.likes[0].like_count)
     return
   return
