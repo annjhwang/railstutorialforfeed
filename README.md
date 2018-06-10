@@ -3,6 +3,7 @@ Build a realtime feed with Ruby on Rails and Pusher Channels
 
 A tutorial to showcase realtime functionality of Pusher Channels in Ruby
 
+[View tutorial](https://pusher.com/tutorials/social-feed-ruby-rails)
 
 Getting Started
 ------
