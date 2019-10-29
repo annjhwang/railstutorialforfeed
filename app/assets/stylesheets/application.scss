@@ -15,9 +15,13 @@
  */
  @import "bootstrap";
  @import url('https://fonts.googleapis.com/css?family=Tajawal');
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
  
- body {
- font-family: 'Tajawal', sans-serif;
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
 }
 
 #post {
